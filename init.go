@@ -35,7 +35,7 @@ func Init() {
 	})
 
 	db.Create(&Cover{
-		Url: "shorturl.at/bjpMN",
+		Url: "t.ly/TIcqC",
 		Label: "Her Loss",
 	})
 
@@ -52,7 +52,5 @@ func Init() {
 
 	db.Model(&Cover{}).Where("label = ?", "Her Loss").Delete(&Cover{})
 
-	// set database read only
-	db.Exec("PRAGMA read_only = ON;")
 }
 

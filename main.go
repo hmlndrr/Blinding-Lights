@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +16,7 @@ type Cover struct {
 }
 
 func main() {
-	
+
 	db, err := gorm.Open(sqlite.Open("covers.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
@@ -29,10 +28,9 @@ func main() {
 	r.LoadHTMLGlob("templates/*.html")
 
 	r.GET("/", func(c *gin.Context) {
-		pageSize := c.DefaultQuery("max", "6")
+		q := c.DefaultQuery("q", "1")
 		var covers []Cover
-		query := fmt.Sprintf("SELECT * FROM covers WHERE deleted_at IS NULL ORDER BY 1 LIMIT %s", pageSize)
-		db.Raw(query).Scan(&covers)
+		db.Order(q).Find(&covers)
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"covers": covers,
 		})
