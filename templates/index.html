@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#111]">
+  <head>
+    <title>✗𝙤</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <section>
+      <menu class="py-10 text-white text-center capitalize">
+        <h1 class="text-7xl">✗𝙤</h1>
+        <h1 class="text-3xl font-bold">Some Covers from my Favorite Artists</h1>
+      </menu>
+      <main>
+        <div class="p-4 sm:p-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+          {{range .covers}}
+          <img
+            src="{{.Url}}"
+            alt="{{.Label}}"
+            title="{{.Label}}"
+            class="object-cover w-full h-96"
+          />
+          {{end}}
+        </div>
+      </main>
+    </section>
+  </body>
+</html>
