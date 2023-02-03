@@ -1,9 +1,8 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
-	"strings"
-	"text/template"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/driver/sqlite"
@@ -25,15 +24,14 @@ func main() {
 
 	db.AutoMigrate(&Cover{})
 
-	var covers []Cover
-	db.Unscoped().Find(&covers)
-
 	r := gin.Default()
-	r.SetFuncMap(template.FuncMap{
-		"upper": strings.ToUpper,
-	})
 	r.LoadHTMLGlob("templates/*.html")
+
 	r.GET("/", func(c *gin.Context) {
+		pageSize := c.DefaultQuery("max", "6")
+		var covers []Cover
+		query := fmt.Sprintf("SELECT * FROM covers WHERE deleted_at IS NULL ORDER BY 1 LIMIT %s", pageSize)
+		db.Raw(query).Scan(&covers)
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"covers": covers,
 		})
