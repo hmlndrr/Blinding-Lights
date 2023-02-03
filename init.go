@@ -14,8 +14,6 @@ func Init() {
 
 	db.AutoMigrate(&Cover{})
 
-	db.Model(&Cover{}).Delete(&Cover{})
-
 	db.Create(&Cover{
 		Url: "https://maximilienproctor.files.wordpress.com/2021/03/house-of-balloons.jpeg", 
 		Label: "House of Balloons",
@@ -37,7 +35,7 @@ func Init() {
 	})
 
 	db.Create(&Cover{
-		Url: "https://pbs.twimg.com/media/FoBOa1CWQAEUxol?format=jpg",
+		Url: "shorturl.at/bjpMN",
 		Label: "Her Loss",
 	})
 

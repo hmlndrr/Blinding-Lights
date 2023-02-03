@@ -1,7 +1,7 @@
 import requests
 
 
-base_url = "http://localhost:8080?max="
+base_url = "https://blinding-lights.onrender.com/?max="
 all_chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:=/? ."
 
 def get_payload(target, n, c):

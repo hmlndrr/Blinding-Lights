@@ -17,6 +17,7 @@ type Cover struct {
 }
 
 func main() {
+	
 	db, err := gorm.Open(sqlite.Open("covers.db"), &gorm.Config{})
 	if err != nil {
 		panic("failed to connect database")
